@@ -1,0 +1,55 @@
+
+
+.strike-through {
+
+    text-decoration: line-through;
+    color: rgb(107, 107, 107);
+}
+
+.form-input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  
+}
+.input-field {
+    border-radius: 5px;
+    padding: 8px;
+    width: 500px;
+    color: rgb(116, 116, 116);
+}
+
+.date{
+    color: rgba(136, 132, 132, 0.76);
+}
+
+.item-list {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ padding: 10px;
+ 
+}
+
+
+.app {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgb(211, 182, 214);
+}
+
+@media screen and (max-width: 550px) {
+    .input-field {
+        width: 300px;
+    }
+
+    .change-bg {
+
+        right: 100px;
+      
+      }
+}
