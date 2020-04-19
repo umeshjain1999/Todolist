@@ -2,7 +2,9 @@
 
 .strike-through {
 
-    text-decoration: line-through;
+     text-decoration: line-through;
+    text-decoration-color: rgb(42, 212, 42);
+    text-decoration-style: wavy;
     color: rgb(107, 107, 107);
 }
 
