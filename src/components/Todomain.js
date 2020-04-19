@@ -1,18 +1,21 @@
-import React , {useState} from 'react';
+import React , {useState , useEffect} from 'react';
 import Item from './Item';
 import Additem from './Additem';
-function Todomain() {
+function Todomain({chg}) {
 
-
-    const initialState = [] ;
-
+   
+    const initialState =[] ;
 
     const [todos, settodo] = useState(initialState);
 
+    
+    
+    
 
     //here value parameter is used from Additem component function
     const addtodo = (value) => {
         const newitem = [...todos, {message:value , iscompleted:false} ];
+        
         settodo( newitem );
     };
 
@@ -34,13 +37,13 @@ function Todomain() {
 
         settodo( newtodos );
     };
-    console.log(todos);
+   
     
     
     return (
         
         <div className='todomain' >
-           
+            
             <h1 style = {{display:"flex" , justifyContent: "center" , fontSize:'40px'}}>Todo List 📑</h1>
             <Additem addtodo = {addtodo}/>
             <div>
@@ -53,6 +56,7 @@ function Todomain() {
                         index = {index}
                         handletoremove = {handletoremove}
                         handleitemtoclick = {handleitemtoclick}
+                        chg = {chg}
                         />
                         
                     ) )
