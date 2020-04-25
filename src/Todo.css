@@ -2,7 +2,7 @@
 
 .strike-through {
 
-     text-decoration: line-through;
+    text-decoration: line-through;
     text-decoration-color: rgb(42, 212, 42);
     text-decoration-style: wavy;
     color: rgb(107, 107, 107);
@@ -27,21 +27,50 @@
     color: rgba(136, 132, 132, 0.76);
 }
 
-.item-list {
- display: flex;
- justify-content: center;
- align-items: center;
- padding: 10px;
- 
-}
 
 
-.app {
+.light-mode {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: rgb(211, 182, 214);
+    
+  
+    background : rgb(211, 182, 214) ;
+  
+    
+  
+    color : white;
+  
+  }
+  
+  .dark-mode {
+    min-height: 100vh;
+     display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  
+    
+    background:rgb(68, 68, 68);
+  
+    color : black;
+  
+  }
+
+  .item-list {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+     
+    }
+
+.change-bg {
+    position: relative;
+    right: 200px;
 }
 
 @media screen and (max-width: 550px) {
