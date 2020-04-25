@@ -1,7 +1,6 @@
 import React , {useState , useEffect} from 'react';
 import Item from './Item';
 import Additem from './Additem';
-import '../App.css';
 import '../Todo.css';
 
 function Todomain() {
