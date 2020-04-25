@@ -1,8 +1,7 @@
 import React from 'react';
 
-const Item = ({todo , index , handletoremove , handleitemtoclick , chg}) => {
+const Item = ({todo , index , handletoremove , handleitemtoclick}) => {
     
-    console.log(chg);
     
     let today = new Date();
     let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -11,7 +10,7 @@ const Item = ({todo , index , handletoremove , handleitemtoclick , chg}) => {
     return (
         <div className = 'item-list'>
             <h4>
-            <span className={todo.iscompleted ? 'strike-through':''} onClick={ () => handleitemtoclick(index) }  style = {{color : chg}} >{todo.message} 
+            <span className={todo.iscompleted ? 'strike-through':''} onClick={ () => handleitemtoclick(index) }  >{todo.message} 
             </span>
             {' '}
             <span className = 'date'>{date + ' ' + time}</span>
