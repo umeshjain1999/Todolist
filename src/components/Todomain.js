@@ -1,7 +1,10 @@
 import React , {useState , useEffect} from 'react';
 import Item from './Item';
 import Additem from './Additem';
-function Todomain({chg}) {
+import '../App.css';
+import '../Todo.css';
+
+function Todomain() {
 
    
     const initialState = () => {
@@ -9,17 +12,36 @@ function Todomain({chg}) {
         return savedItem || []
     };
 
+    //Dark or Light mode
+    const SavedMode = () => {
+        const savedmode = JSON.parse(localStorage.getItem('mode'));
+        return savedmode
+      };
+
+    const [tog, settog] = useState(SavedMode());
+
     const [todos, settodo] = useState(initialState());
 
+    useEffect(() => {
+        document.title = `Todo 🤓`
+        alert("⚠️ All 💾 will be removed if you clear the cache ⚠️")
+      },[])
 
+
+    //useEffect for dark/light mode
+    useEffect(() => {
+        localStorage.setItem('mode' , JSON.stringify(tog));
+      },[tog])
+    
 
     useEffect(() => {
         localStorage.setItem('todolist' , JSON.stringify(todos));
     }, [todos]);
 
     
-    
-    
+  
+
+       
 
     //here value parameter is used from Additem component function
     const addtodo = (value) => {
@@ -51,8 +73,15 @@ function Todomain({chg}) {
     
     return (
         
-        <div className='todomain' >
+        <div className =  {tog? 'light-mode' : 'dark-mode'} >
             
+            <div >
+                <span className = 'change-bg'  onClick = {() => settog(prev => !prev)}>🖐<p style = {{fontSize:'10px' , color:'rgb(116, 116, 116)'}} >(High-Five here)</p></span>
+                
+             </div>
+
+
+
             <h1 style = {{display:"flex" , justifyContent: "center" , fontSize:'40px'}}>Todo List 📑</h1>
             <Additem addtodo = {addtodo}/>
             <div>
@@ -65,7 +94,7 @@ function Todomain({chg}) {
                         index = {index}
                         handletoremove = {handletoremove}
                         handleitemtoclick = {handleitemtoclick}
-                        chg = {chg}
+                        tog = {tog}
                         />
                         
                     ) )
