@@ -1,6 +1,5 @@
 import React  from 'react';
 import Todomain from './components/Todomain';
-import './App.css';
 import './Todo.css';
 
 function App(){
