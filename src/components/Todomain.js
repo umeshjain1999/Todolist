@@ -4,9 +4,18 @@ import Additem from './Additem';
 function Todomain({chg}) {
 
    
-    const initialState =[] ;
+    const initialState = () => {
+        const savedItem = JSON.parse(localStorage.getItem('todolist'));
+        return savedItem || []
+    };
 
-    const [todos, settodo] = useState(initialState);
+    const [todos, settodo] = useState(initialState());
+
+
+
+    useEffect(() => {
+        localStorage.setItem('todolist' , JSON.stringify(todos));
+    }, [todos]);
 
     
     
