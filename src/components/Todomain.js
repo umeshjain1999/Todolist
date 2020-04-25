@@ -94,7 +94,7 @@ function Todomain() {
                         index = {index}
                         handletoremove = {handletoremove}
                         handleitemtoclick = {handleitemtoclick}
-                        tog = {tog}
+                  
                         />
                         
                     ) )
