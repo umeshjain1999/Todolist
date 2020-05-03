@@ -35,13 +35,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-  
     background : rgb(211, 182, 214) ;
-  
-    
-  
     color : white;
+    transition: background 0.25s ease-out;
   
   }
   
@@ -51,11 +47,9 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-  
-    
     background:rgb(68, 68, 68);
-  
     color : black;
+    transition: background 0.25s ease-out;
   
   }
 
