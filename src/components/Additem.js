@@ -1,28 +1,38 @@
 import React, { useState } from 'react'
+import '../App.css';
+import '../Todo.css';
 
 const Additem = ( {addtodo} ) => {
 
-    const [value, setvalue] = useState('');
+    const [value_, setvalue] = useState('');
 
     const onFormSubmit = (event) => {
+
         event.preventDefault();
 
-        if(!value) return;
+        const resetvalue = () => setvalue(" ")
 
-        addtodo(value);
+        if(!value_) return;
+
+        addtodo(value_);
+
+        resetvalue();
+       
     }
     const handleonchange = (event) => {
         setvalue(event.target.value);
-    }
+    
+
+        }
     return (
         <div >
             <form onSubmit = {onFormSubmit} className = 'form-input' >
                 <label >
-                    <input className = 'input-field' type="text" placeholder = "write and press enter 🖖 click on '🙅' to remove " value = {value} onChange = {handleonchange}/>
+                    <input name = 'list' className = 'input-field'  value = {value_} type="text" placeholder = "write and press enter 🖖 click on '🙅' to remove "  onChange = {handleonchange}/>
                 </label>
             </form>
         </div>
     )
 }
 
-export default Additem
+export default Additem;
