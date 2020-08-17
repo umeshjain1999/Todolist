@@ -23,7 +23,7 @@ function Todomain() {
 
     useEffect(() => {
         document.title = `Todo 🤓`
-        alert("⚠️ All 💾 will be removed if you clear the cache ⚠️")
+        alert("⚠️ All todos will be removed if you clear the cache ⚠️")
       },[])
 
 
@@ -75,13 +75,13 @@ function Todomain() {
         <div className =  {tog? 'light-mode' : 'dark-mode'} >
             
             <div >
-                <span className = 'change-bg'  onClick = {() => settog(prev => !prev)}>🖐<p style = {{fontSize:'10px' , color:'rgb(116, 116, 116)'}} >(High-Five here)</p></span>
+                <span className = 'change-bg'  onClick = {() => settog(prev => !prev)}>🖐<p>(High-Five here)</p></span>
                 
              </div>
 
 
 
-            <h1 style = {{display:"flex" , justifyContent: "center" , fontSize:'40px'}}>Todo List 📑</h1>
+            <h1 style = {{display:"flex" , justifyContent: "center" , fontSize:'40px'}}><i>#todo</i></h1>
             <Additem addtodo = {addtodo}/>
             <div>
                 {todos.length ? (
