@@ -19,11 +19,13 @@ it is marked done it updates the time accordingly.
 * coming many more...
 
 ### How I created this project
-- I have used the concept of hooks (useState,useEffect) from react to manage the todo across components.
+- I have used useState and useEffect to manage the data across the components in Reactjs.
+- Used JSON format data to manage todos.
 - For multiple themes css variables were helpful. 
 
 ### Credits
-Learned the concepts of reactjs from this channel [Codevolution](https://youtu.be/QFaFIcGhPoM).
+Learned the concepts of reactjs from this channel [Codevolution](https://youtu.be/QFaFIcGhPoM).<br>
+Readme inspired by [Akash Nimare](https://medium.com/@meakaakka/a-beginners-guide-to-writing-a-kickass-readme-7ac01da88ab3).
 
 ### License
 MIT
