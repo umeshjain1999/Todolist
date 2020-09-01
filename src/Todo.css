@@ -9,6 +9,68 @@
     opacity: 1;
   }
 }
+.change-bg {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100px;
+  height: 20px;
+}
+.change-bg div {
+  background-color: white;
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+}
+.change-bg .color-1 {
+  background-color: #fda7df;
+  border: 3px solid #6f1e51;
+}
+.change-bg .color-2 {
+  background-color: #ffdd59;
+  border: 3px solid #ffa801;
+}
+.change-bg .color-3 {
+  background-color: #2f3640;
+  border: 3px solid#c8d6e5;
+}
+.light-mode {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fda7df;
+  color: #6f1e51;
+  --light-color: rgba(181, 52, 113, 0.7);
+  --box-shadow-color: #6f1e51;
+  transition: background 0.25s ease-out;
+}
+.light-sec-mode {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #ffdd59;
+  color: #ffa801;
+  --light-color: rgba(255, 168, 1, 0.8);
+  --box-shadow-color: #ffa801;
+  transition: background 0.25s ease-out;
+}
+.dark-mode {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #2f3640;
+  color: #c8d6e5;
+  --light-color: rgba(113, 128, 147, 0.7);
+  --box-shadow-color: #c8d6e5;
+  transition: background 0.25s ease-out;
+}
+
 .list-container .list-task {
   max-width: 300px;
   word-wrap: break-word;
@@ -77,32 +139,6 @@
   cursor: pointer;
   position: relative;
   right: 200px;
-}
-
-.light-mode {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: #fda7df;
-  color: #6f1e51;
-  --light-color: rgba(181, 52, 113, 0.7);
-  --box-shadow-color: #6f1e51;
-  transition: background 0.25s ease-out;
-}
-
-.dark-mode {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: #2f3640;
-  color: #c8d6e5;
-  --light-color: rgba(113, 128, 147, 0.7);
-  --box-shadow-color: #c8d6e5;
-  transition: background 0.25s ease-out;
 }
 
 .item-list {

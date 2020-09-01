@@ -81,7 +81,10 @@ function Todomain() {
     <div className={tog ? "light-mode" : "dark-mode"}>
       <div>
         <span className="change-bg" onClick={() => settog((prev) => !prev)}>
-          🖐<p>(High-Five here)</p>
+          {/* 🖐<p>(High-Five here)</p> */}
+          <div className = 'color-1'></div>
+          <div className = 'color-2'></div>
+          <div className = 'color-3'></div>
         </span>
       </div>
 
