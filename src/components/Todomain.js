@@ -14,13 +14,13 @@ function Todomain() {
     const savedmode = JSON.parse(localStorage.getItem("mode"));
     return savedmode;
   };
-
-  const [tog, settog] = useState(SavedMode());
+  //For toggling between theme
+  const [tog, settog] = useState(SavedMode() ? SavedMode() : "light-mode");
 
   const [todos, settodo] = useState(initialState());
 
   useEffect(() => {
-    // alert("Todos will be store in your local storage.");
+    alert("Todos will be store in your local storage.");
   }, []);
 
   //useEffect for dark/light mode
@@ -31,6 +31,7 @@ function Todomain() {
   useEffect(() => {
     localStorage.setItem("todolist", JSON.stringify(todos));
   }, [todos]);
+
   const giveMeDate = () => {
     let today = new Date();
     let date =
@@ -47,6 +48,7 @@ function Todomain() {
     let creation_time = time + " " + date;
     return creation_time;
   };
+
   //here value parameter is used from Additem component function
   const addtodo = (value) => {
     const creation_time = giveMeDate();
@@ -78,13 +80,15 @@ function Todomain() {
   };
 
   return (
-    <div className={tog ? "light-mode" : "dark-mode"}>
+    <div className={tog}>
       <div>
-        <span className="change-bg" onClick={() => settog((prev) => !prev)}>
-          {/* 🖐<p>(High-Five here)</p> */}
-          <div className = 'color-1'></div>
-          <div className = 'color-2'></div>
-          <div className = 'color-3'></div>
+        <span className="change-bg">
+          <div className="color-1" onClick={() => settog("light-mode")}></div>
+          <div
+            className="color-2"
+            onClick={() => settog("light-sec-mode")}
+          ></div>
+          <div className="color-3" onClick={() => settog("dark-mode")}></div>
         </span>
       </div>
 
