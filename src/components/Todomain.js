@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Item from "./Item";
 import Additem from "./Additem";
 import "../Todo.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Completed from "./Completed";
+import Item from "./Item";
+import Active from "./Active";
+import Tab from "./Tab";
 
 function Todomain() {
   const initialState = () => {
@@ -14,8 +18,8 @@ function Todomain() {
     const savedmode = JSON.parse(localStorage.getItem("mode"));
     return savedmode;
   };
-
-  const [tog, settog] = useState(SavedMode());
+  //For toggling between theme
+  const [tog, settog] = useState(SavedMode() ? SavedMode() : "light-mode");
 
   const [todos, settodo] = useState(initialState());
 
@@ -31,6 +35,7 @@ function Todomain() {
   useEffect(() => {
     localStorage.setItem("todolist", JSON.stringify(todos));
   }, [todos]);
+
   const giveMeDate = () => {
     let today = new Date();
     let date =
@@ -47,6 +52,7 @@ function Todomain() {
     let creation_time = time + " " + date;
     return creation_time;
   };
+
   //here value parameter is used from Additem component function
   const addtodo = (value) => {
     const creation_time = giveMeDate();
@@ -78,10 +84,15 @@ function Todomain() {
   };
 
   return (
-    <div className={tog ? "light-mode" : "dark-mode"}>
+    <div className={tog}>
       <div>
-        <span className="change-bg" onClick={() => settog((prev) => !prev)}>
-          🖐<p>(High-Five here)</p>
+        <span className="change-bg">
+          <div className="color-1" onClick={() => settog("light-mode")}></div>
+          <div
+            className="color-2"
+            onClick={() => settog("light-sec-mode")}
+          ></div>
+          <div className="color-3" onClick={() => settog("dark-mode")}></div>
         </span>
       </div>
 
@@ -91,19 +102,59 @@ function Todomain() {
         <i>#todo</i>
       </h1>
       <Additem addtodo={addtodo} />
-      <div>
-        {todos.length
-          ? todos.map((item, index) => (
-              <Item
-                key={`${item.message}-${index}`}
-                todo={item}
-                index={index}
-                handletoremove={handletoremove}
-                handleitemtoclick={handleitemtoclick}
-              />
-            ))
-          : ""}
-      </div>
+
+      <Router>
+        <Tab />
+        <div>
+          {todos.length
+            ? todos.map((item, index) => (
+                <Switch>
+                  <Route
+                    path="/"
+                    render={(props) => (
+                      <Item
+                        {...props}
+                        key={`${item.message}-${index}-${item.creation_time}`}
+                        todo={item}
+                        index={index}
+                        handletoremove={handletoremove}
+                        handleitemtoclick={handleitemtoclick}
+                      />
+                    )}
+                    exact
+                  />
+
+                  <Route
+                    path="/completed"
+                    render={(props) => (
+                      <Completed
+                        {...props}
+                        key={`${item.message}-${index}-${item.creation_time}`}
+                        todo={item}
+                        index={index}
+                        handletoremove={handletoremove}
+                        handleitemtoclick={handleitemtoclick}
+                      />
+                    )}
+                  />
+                  <Route
+                    path="/active"
+                    render={(props) => (
+                      <Active
+                        {...props}
+                        key={`${item.message}-${index}-${item.creation_time}`}
+                        todo={item}
+                        index={index}
+                        handletoremove={handletoremove}
+                        handleitemtoclick={handleitemtoclick}
+                      />
+                    )}
+                  />
+                </Switch>
+              ))
+            : ""}
+        </div>
+      </Router>
     </div>
   );
 }
