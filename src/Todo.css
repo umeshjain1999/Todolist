@@ -9,6 +9,7 @@
     opacity: 1;
   }
 }
+
 a {
   text-decoration: none;
   color: var(--box-shadow-color);
@@ -150,7 +151,7 @@ a {
 .input-field:focus {
   border: none;
   outline: 0;
-  box-shadow: 3px 3px 0px var(--box-shadow-color);
+  box-shadow: 3px 4px 0px var(--box-shadow-color);
   transform: scale(1.01);
 }
 .input-field:hover {
@@ -206,4 +207,39 @@ a {
   .change-bg {
     right: 100px;
   }
+}
+
+
+/* Delete button */
+
+
+img {
+  width : 1rem;
+  height: 1rem;
+}
+
+.delete {
+  margin-top:10px;
+  width: 80px;
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  /* border: 2px solid black; */
+  border-radius: 5px;
+  background-color: #ff5252;
+  color:black;
+  font-weight:bold; 
+  padding:5px;
+  cursor:pointer;
+  transition:0.3s
+}
+
+.delete:hover{
+  box-shadow:3px 4px 0px #b33939;
+  transform: scale(1.01);
+}
+
+.delete:focus{
+  box-shadow:3px 4px 0px #b33939;
+  transform: scale(1.01);
 }

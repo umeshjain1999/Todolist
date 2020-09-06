@@ -6,6 +6,9 @@ import Completed from "./Completed";
 import Item from "./Item";
 import Active from "./Active";
 import Tab from "./Tab";
+import Delete from './Delete';
+
+
 
 function Todomain() {
   const initialState = () => {
@@ -48,7 +51,8 @@ function Todomain() {
     let time =
       today.getHours() +
       ":" +
-      (today.getMinutes() < 10 ? "0" + today.getMinutes() : today.getMinutes());
+      (today.getMinutes() < 10 ? "0" + today.getMinutes() : today.getMinutes()) + ':'+
+      (today.getSeconds() < 10 ? "0" + today.getSeconds() : today.getSeconds());
     let creation_time = time + " " + date;
     return creation_time;
   };
@@ -56,11 +60,10 @@ function Todomain() {
   //here value parameter is used from Additem component function
   const addtodo = (value) => {
     const creation_time = giveMeDate();
-    const newitem = [
+    let newitem = [
       ...todos,
       { message: value, iscompleted: false, creation_time: creation_time }
     ];
-
     settodo(newitem);
   };
 
@@ -82,6 +85,13 @@ function Todomain() {
 
     settodo(newtodos);
   };
+
+
+  const clearAllTodo = () => {
+    alert('clearing all todos 📢');
+    localStorage.setItem("todolist", JSON.stringify([]));
+    settodo([]);
+  }
 
   return (
     <div className={tog}>
@@ -129,7 +139,7 @@ function Todomain() {
                     render={(props) => (
                       <Completed
                         {...props}
-                        key={`${item.message}-${index}-${item.creation_time}`}
+                        key={`${item.message}${index}${item.creation_time}`}
                         todo={item}
                         index={index}
                         handletoremove={handletoremove}
@@ -155,6 +165,7 @@ function Todomain() {
             : ""}
         </div>
       </Router>
+      <Delete clearAllTodo = {clearAllTodo}/>
     </div>
   );
 }
