@@ -62,7 +62,7 @@ function Todomain() {
     const creation_time = giveMeDate();
     let newitem = [
       ...todos,
-      { message: value, iscompleted: false, creation_time: creation_time }
+      {id : new Date().getTime(), message: value, iscompleted: false, creation_time: creation_time }
     ];
     settodo(newitem);
   };
@@ -118,13 +118,13 @@ function Todomain() {
         <div>
           {todos.length
             ? todos.map((item, index) => (
-                <Switch>
+                <Switch key = {item.id}>
                   <Route
                     path="/"
                     render={(props) => (
                       <Item
                         {...props}
-                        key={`${item.message}-${index}-${item.creation_time}`}
+                        key={`A-${item.id}`}
                         todo={item}
                         index={index}
                         handletoremove={handletoremove}
@@ -139,7 +139,7 @@ function Todomain() {
                     render={(props) => (
                       <Completed
                         {...props}
-                        key={`${item.message}${index}${item.creation_time}`}
+                        key={`B-${item.id}`}
                         todo={item}
                         index={index}
                         handletoremove={handletoremove}
@@ -152,7 +152,7 @@ function Todomain() {
                     render={(props) => (
                       <Active
                         {...props}
-                        key={`${item.message}-${index}-${item.creation_time}`}
+                        key={`C-${item.id}`}
                         todo={item}
                         index={index}
                         handletoremove={handletoremove}
