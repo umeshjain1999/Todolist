@@ -1,6 +1,6 @@
 # Todo App
 Todo is a task management app to help you stay organized and manage your day-to-day.
-#### [here](reactjs-todo-list-yo.netlify.app)
+#### [hosted here](https://reactjs-todo-list-yo.netlify.app/)
 
 
 ## Motivation
