@@ -14,11 +14,17 @@ a {
   text-decoration: none;
   color: var(--box-shadow-color);
 }
+
 .tabs {
   margin-bottom: 10px;
+  display: flex;
 }
 
-.tabs div::after {
+.tabs .tab {
+  margin: 0 10px;
+}
+
+.tabs .tab::after {
   content: "";
   display: block;
   width: 0;
@@ -26,15 +32,13 @@ a {
   background-color: var(--box-shadow-color);
   transition: width 0.3s;
 }
-.tabs div:hover::after {
+
+.tabs .tab:hover::after,
+.tabs .tab:active::after,
+.tabs .tab.selected::after {
   width: 100%;
 }
-.tabs div:active::after {
-  width: 100%;
-}
-/* .tabs div:focus {
-  font-weight: bolder;
-} */
+
 .change-bg {
   display: flex;
   align-items: center;
@@ -209,37 +213,35 @@ a {
   }
 }
 
-
 /* Delete button */
 
-
 img {
-  width : 1rem;
+  width: 1rem;
   height: 1rem;
 }
 
 .delete {
-  margin-top:10px;
+  margin-top: 10px;
   width: 80px;
-  display:flex;
-  align-items:center;
-  justify-content:space-around;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   /* border: 2px solid black; */
   border-radius: 5px;
   background-color: #ff5252;
-  color:black;
-  font-weight:bold; 
-  padding:5px;
-  cursor:pointer;
-  transition:0.3s
+  color: black;
+  font-weight: bold;
+  padding: 5px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.delete:hover{
-  box-shadow:3px 4px 0px #b33939;
+.delete:hover {
+  box-shadow: 3px 4px 0px #b33939;
   transform: scale(1.01);
 }
 
-.delete:focus{
-  box-shadow:3px 4px 0px #b33939;
+.delete:focus {
+  box-shadow: 3px 4px 0px #b33939;
   transform: scale(1.01);
 }
