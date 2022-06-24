@@ -6,9 +6,8 @@ import Completed from "./Completed";
 import Item from "./Item";
 import Active from "./Active";
 import Tab from "./Tab";
-import Delete from './Delete';
-
-
+import Delete from "./Delete";
+import Modal from "./Modal";
 
 function Todomain() {
   const initialState = () => {
@@ -26,9 +25,7 @@ function Todomain() {
 
   const [todos, settodo] = useState(initialState());
 
-  useEffect(() => {
-    // alert("Todos will be store in your local storage.");
-  }, []);
+  const [isModal, setModal] = useState(false);
 
   //useEffect for dark/light mode
   useEffect(() => {
@@ -51,7 +48,10 @@ function Todomain() {
     let time =
       today.getHours() +
       ":" +
-      (today.getMinutes() < 10 ? "0" + today.getMinutes() : today.getMinutes()) + ':'+
+      (today.getMinutes() < 10
+        ? "0" + today.getMinutes()
+        : today.getMinutes()) +
+      ":" +
       (today.getSeconds() < 10 ? "0" + today.getSeconds() : today.getSeconds());
     let creation_time = time + " " + date;
     return creation_time;
@@ -62,7 +62,12 @@ function Todomain() {
     const creation_time = giveMeDate();
     let newitem = [
       ...todos,
-      {id : new Date().getTime(), message: value, iscompleted: false, creation_time: creation_time }
+      {
+        id: new Date().getTime(),
+        message: value,
+        iscompleted: false,
+        creation_time: creation_time
+      }
     ];
     settodo(newitem);
   };
@@ -85,88 +90,98 @@ function Todomain() {
 
     settodo(newtodos);
   };
-
-
+  //to clear all data from local storage
   const clearAllTodo = () => {
-    alert('clearing all todos 📢');
     localStorage.setItem("todolist", JSON.stringify([]));
     settodo([]);
-  }
+    setModal(false);
+  };
+  //toggle modal
+  const openModal = () => {
+    setModal((prev) => !prev);
+  };
 
   return (
-    <div className={tog}>
-      <div>
-        <span className="change-bg">
-          <div className="color-1" onClick={() => settog("light-mode")}></div>
-          <div
-            className="color-2"
-            onClick={() => settog("light-sec-mode")}
-          ></div>
-          <div className="color-3" onClick={() => settog("dark-mode")}></div>
-        </span>
-      </div>
-
-      <h1
-        style={{ display: "flex", justifyContent: "center", fontSize: "40px" }}
-      >
-        <i>#todo</i>
-      </h1>
-      <Additem addtodo={addtodo} />
-
-      <Router>
-        <Tab />
-        <div>
-          {todos.length
-            ? todos.map((item, index) => (
-                <Switch key = {item.id}>
-                  <Route
-                    path="/"
-                    render={(props) => (
-                      <Item
-                        {...props}
-                        key={`A-${item.id}`}
-                        todo={item}
-                        index={index}
-                        handletoremove={handletoremove}
-                        handleitemtoclick={handleitemtoclick}
-                      />
-                    )}
-                    exact
-                  />
-
-                  <Route
-                    path="/completed"
-                    render={(props) => (
-                      <Completed
-                        {...props}
-                        key={`B-${item.id}`}
-                        todo={item}
-                        index={index}
-                        handletoremove={handletoremove}
-                        handleitemtoclick={handleitemtoclick}
-                      />
-                    )}
-                  />
-                  <Route
-                    path="/active"
-                    render={(props) => (
-                      <Active
-                        {...props}
-                        key={`C-${item.id}`}
-                        todo={item}
-                        index={index}
-                        handletoremove={handletoremove}
-                        handleitemtoclick={handleitemtoclick}
-                      />
-                    )}
-                  />
-                </Switch>
-              ))
-            : ""}
+    <>
+      {isModal && <Modal clearAllTodo={clearAllTodo} openModal={openModal} />}
+      <div className={`wrapper ${tog}`}>
+        <div className="top-wrapper">
+          <div className="change-bg">
+            <div
+              className="change-bg-child color-1"
+              onClick={() => settog("light-mode")}
+            ></div>
+            <div
+              className="change-bg-child color-2"
+              onClick={() => settog("light-sec-mode")}
+            ></div>
+            <div
+              className="change-bg-child color-3"
+              onClick={() => settog("dark-mode")}
+            ></div>
+          </div>
+          <Delete openModal={openModal} />
         </div>
-      </Router>
-      <Delete clearAllTodo = {clearAllTodo}/>
-    </div>
+
+        <h1 className="title">
+          <i>#todo</i>
+        </h1>
+        <Additem addtodo={addtodo} />
+
+        <Router>
+          <Tab />
+          <div className="list-wrapper">
+            {todos.length
+              ? todos.map((item, index) => (
+                  <Switch key={item.id}>
+                    <Route
+                      path="/"
+                      render={(props) => (
+                        <Item
+                          {...props}
+                          key={`A-${item.id}`}
+                          todo={item}
+                          index={index}
+                          handletoremove={handletoremove}
+                          handleitemtoclick={handleitemtoclick}
+                        />
+                      )}
+                      exact
+                    />
+
+                    <Route
+                      path="/completed"
+                      render={(props) => (
+                        <Completed
+                          {...props}
+                          key={`B-${item.id}`}
+                          todo={item}
+                          index={index}
+                          handletoremove={handletoremove}
+                          handleitemtoclick={handleitemtoclick}
+                        />
+                      )}
+                    />
+                    <Route
+                      path="/active"
+                      render={(props) => (
+                        <Active
+                          {...props}
+                          key={`C-${item.id}`}
+                          todo={item}
+                          index={index}
+                          handletoremove={handletoremove}
+                          handleitemtoclick={handleitemtoclick}
+                        />
+                      )}
+                    />
+                  </Switch>
+                ))
+              : ""}
+          </div>
+        </Router>
+      </div>
+    </>
   );
 }
 
