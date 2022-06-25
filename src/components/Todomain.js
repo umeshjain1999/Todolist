@@ -8,6 +8,9 @@ import Active from "./Active";
 import Tab from "./Tab";
 import Delete from "./Delete";
 import Modal from "./Modal";
+import { ReactComponent as BeeIcon } from "./icons/bee.svg";
+import { ReactComponent as FlamingoIcon } from "./icons/flamingo.svg";
+import { ReactComponent as WizardIcon } from "./icons/wizard.svg";
 
 function Todomain() {
   const initialState = () => {
@@ -110,15 +113,27 @@ function Todomain() {
             <div
               className="change-bg-child color-1"
               onClick={() => settog("light-mode")}
-            ></div>
+            >
+              <span className="theme-icon color-1-icon">
+                <FlamingoIcon />
+              </span>
+            </div>
             <div
               className="change-bg-child color-2"
               onClick={() => settog("light-sec-mode")}
-            ></div>
+            >
+              <span className="theme-icon color-2-icon">
+                <BeeIcon />
+              </span>
+            </div>
             <div
               className="change-bg-child color-3"
               onClick={() => settog("dark-mode")}
-            ></div>
+            >
+              <span className="theme-icon color-3-icon">
+                <WizardIcon />
+              </span>
+            </div>
           </div>
           <Delete openModal={openModal} />
         </div>
